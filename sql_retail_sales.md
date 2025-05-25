@@ -1,4 +1,4 @@
- **Project Title:** `Retail Sales Analysis`
+ **Project Title:** Retail Sales Analysis  
 **Database:** `sql_project`
 This project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. 
 # Objectives
