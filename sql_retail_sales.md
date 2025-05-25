@@ -12,9 +12,9 @@ This project involves setting up a retail sales database, performing exploratory
 •	**Database Creation:** The project starts by creating a database named sql_project.  
 •	**Table Creation:** A table named retail_sales_analysis is created to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.  
 ```sql
-CREATE DATABASE p1_retail_db;
+CREATE DATABASE sql_project;
 
-CREATE TABLE retail_sales
+CREATE TABLE retail_sales_analysis
 (
     transactions_id INT PRIMARY KEY,
     sale_date DATE,	
@@ -29,14 +29,15 @@ CREATE TABLE retail_sales
     total_sale FLOAT
 ); 
 ```
-2. Data Exploration & Cleaning
-•	Record Count: Determine the total number of records in the dataset.
-•	Customer Count: Find out how many unique customers are in the dataset.
-•	Category Count: Identify all unique product categories in the dataset.
-•	Null Value Check: Check for any null values in the dataset and delete records with missing data.
-SELECT COUNT(*) FROM retail_sales;
-SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
-SELECT DISTINCT category FROM retail_sales;
+2. **Data Exploration & Cleaning**  
+•	**Record Count:** Determine the total number of records in the dataset.  
+•	**Customer Count:** Find out how many unique customers are in the dataset.  
+•	**Category Count:** Identify all unique product categories in the dataset.  
+•	**Null Value Check:** Check for any null values in the dataset and delete records with missing data.  
+```sql
+SELECT COUNT(*) FROM retail_sales_analysis;
+SELECT COUNT(DISTINCT customer_id) retail_sales_analysis;
+SELECT DISTINCT category FROM retail_sales_analysis;
 
 SELECT * FROM retail_sales
 WHERE 
@@ -49,6 +50,7 @@ WHERE
     sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
     gender IS NULL OR age IS NULL OR category IS NULL OR 
     quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+```
 3. Data Analysis & Findings
 1.	Write a SQL query to retrieve all columns for sales made on '2022-11-05:
 SELECT *
