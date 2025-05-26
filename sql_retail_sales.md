@@ -35,18 +35,18 @@ CREATE TABLE retail_sales_analysis
 •	**Category Count:** Identify all unique product categories in the dataset.  
 •	**Null Value Check:** Check for any null values in the dataset and delete records with missing data.  
 ```sql
-SELECT * FROM Retail Sales Analysis;
-SELECT COUNT (DISTINCT customer_id) FROM Retail Sales Analysis;
-SELECT DISTINCT category FROM Retail Sales Analysis;
+SELECT * FROM retail_sales_analysis;
+SELECT COUNT (DISTINCT customer_id) FROM retail_sales_analysis;
+SELECT DISTINCT category FROM retail_sales_analysis;
 
-SELECT * FROM Retail Sales Analysis;
+SELECT * FROM retail_sales_analysiss;
 WHERE
     transactions_id IS null or sale_date IS null or
     sale_time IS null or customer_id IS null or
     gender IS null or age IS null or category IS null or
     quantity IS null or price_per_unit IS null or
     cogs IS null or total_sale;
-DELETE FROM Retail Sales Analysis
+DELETE FROM retail_sales_analysis
 WHERE
     transactions_id IS null or sale_date IS null or
     sale_time IS null or customer_id IS null or
@@ -57,35 +57,57 @@ WHERE
 3. # Data Analysis & Findings
 1.	**Write a SQL query to retrieve all columns for sales made on '2022-11-05:**  
 ```sql
-
+SELECT * FROM retail_sales_analysis
+WHERE sale_date = '2022-11-05';
 ```
-2.	**Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022:**  
+2.	**Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than or equal to 4 in the month of Nov-2022:**  
 ```sql
-
+SELECT * FROM retail_sales_analysis
+WHERE
+    sale_date like '2022-11%' and
+    category = 'Clothing'and
+    quantity >= 4;
 ```
 3.	**Write a SQL query to calculate the total sales (total_sale) for each category.:**  
 ```sql
-
+SELECT
+category,
+sum(total_sale) as net_sale,
+count(*) as total_orders
+from retail_sales_analysis
+group by 1 
 ```
 4.	**Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.:**  
 ```sql
-
+SELECT category,
+    ROUND(AVG(age),0)
+    from  retail_sales_analysis
+    WHERE category = 'Beauty';
 ```
 5.	**Write a SQL query to find all transactions where the total_sale is greater than 1000.:**  
 ```sql
-
+SELECT * FROM retail_sales_analysis
+WHERE total_sale >1000;
 ```
 6.	**Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.:**  
 ```sql
-
+SELECT category,
+gender,
+count(transaction_id) as total_transactions
+FROM retail_sales_analysis
+group by 1,2;
 ```
 7.	**Write a SQL query to calculate the average sale for each month. Find out best selling month in each year:**  
 ```sql
-
+SELECT
+    Year(sale_date),
+    Month(sale_date),
+    AVG(total_sale) AS Avg_sales
+FROM retail_sales_analysis
 ```
 8.	**Write a SQL query to find the top 5 customers based on the highest total sales:**
 ```sql
-
+S
 ```
 9.	**Write a SQL query to find the number of unique customers who purchased items from each category.:**   
 ```sql
