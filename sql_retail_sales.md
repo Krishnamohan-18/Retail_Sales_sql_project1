@@ -38,19 +38,21 @@ CREATE TABLE retail_sales_analysis
 SELECT * FROM Retail Sales Analysis;
 SELECT COUNT (DISTINCT customer_id) FROM Retail Sales Analysis;
 SELECT DISTINCT category FROM Retail Sales Analysis;
+
 SELECT * FROM Retail Sales Analysis;
 WHERE
-transactions_id IS null or sale_date IS null or
-sale_time IS null or customer_id IS null or
-gender IS null or age IS null or category IS null or
-quantity IS null or price_per_unit IS null or
-cogs IS null or total_sale;
+    transactions_id IS null or sale_date IS null or
+    sale_time IS null or customer_id IS null or
+    gender IS null or age IS null or category IS null or
+    quantity IS null or price_per_unit IS null or
+    cogs IS null or total_sale;
 DELETE FROM Retail Sales Analysis
-transactions_id IS null or sale_date IS null or
-sale_time IS null or customer_id IS null or
-gender IS null or age IS null or category IS null or
-quantity IS null or price_per_unit IS null or
-cogs IS null or total_sale;
+WHERE
+    transactions_id IS null or sale_date IS null or
+    sale_time IS null or customer_id IS null or
+    gender IS null or age IS null or category IS null or
+    quantity IS null or price_per_unit IS null or
+    cogs IS null or total_sale;
 ```
 3. # Data Analysis & Findings
 1.	**Write a SQL query to retrieve all columns for sales made on '2022-11-05:**  
