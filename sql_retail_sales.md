@@ -99,23 +99,57 @@ group by 1,2;
 ```
 7.	**Write a SQL query to calculate the average sale for each month. Find out best selling month in each year:**  
 ```sql
-SELECT
-    Year(sale_date),
-    Month(sale_date),
-    AVG(total_sale) AS Avg_sales
-FROM retail_sales_analysis
+SELECT  year_, Month_,Avg_sales
+    FROM (
+        SELECT
+            year_,
+            Month_,
+            Avg_sales,
+            RANK() OVER(PARTITION BY year_ ORDER BY Avg_sales DESC) AS rank_
+    FROM (
+	    SELECT
+            Year(sale_date) AS year_,
+            Month(sale_date) AS Month_,
+            AVG(total_sale) AS Avg_sales
+    FROM retail_sales_analysis
+        GROUP BY 1,2
+    ) AS monthly_sales
+    ) AS ranked_sales 
+    WHERE rank_ =1;
 ```
 8.	**Write a SQL query to find the top 5 customers based on the highest total sales:**
 ```sql
-S
+SELECT 
+	customer_id,
+	SUM(total_sale)
+FROM retail_sales_analysis
+GROUP BY customer_id
+LIMIT 5;
 ```
 9.	**Write a SQL query to find the number of unique customers who purchased items from each category.:**   
 ```sql
-
+SELECT category,
+       count(DISTINCT customer_id) AS UNIQUE_customers
+From retail_sales_analysis
+GROUP BY 1;
 ```
 10.	**Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17):**  
 ```sql
-
+with hourly_table as 
+(
+SELECT *,
+CASE 
+	WHEN HOUR(sale_time) < 12 THEN 'Morning'
+    WHEN HOUR(sale_time) BETWEEN 12 AND 17 THEN 'AFTERNOON'
+    ELSE 'EVENING'
+    END AS shift
+    FROM retail_sales_analysis
+)
+select  shift,
+		count(*) as sales
+	    From hourly_table
+        GROUP BY shift
+        order by sales desc
 ```
 # Findings
 •	**Customer Demographics:** The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.      
